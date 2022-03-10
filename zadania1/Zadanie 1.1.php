@@ -1,0 +1,31 @@
+<?php
+$var1=3;
+$var2=5;
+$var3=4;
+$result="false";
+//var_dump($var1,$var2,$var3);
+if($var1==max($var1,$var2,$var3)){
+    $var1=pow($var1,2);
+    $var2=pow($var2,2);
+    $var3=pow($var3,2);
+    if($var1==$var2+$var3){
+        $result="true";
+    }
+}
+elseif($var2==max($var1,$var2,$var3)){
+    $var1=pow($var1,2);
+    $var2=pow($var2,2);
+    $var3=pow($var3,2);
+    if($var2==$var1+$var3){
+        $result="true";
+    }
+}
+else{
+    $var1=pow($var1,2);
+    $var2=pow($var2,2);
+    $var3=pow($var3,2);
+    if($var3==$var1+$var2){
+        $result="true";
+    }
+}
+echo "$result";
