@@ -20,19 +20,26 @@ echo '<form action="Zadanie3.1.php" method="get">
 
 if(isset($_GET['submit'])){
     $result=0;
-    switch ($_GET['operation']){
-        case "+":
-            $result = $_GET['fnumber'] + $_GET['snumber'];
-            break;
-        case "-":
-            $result = $_GET['fnumber'] - $_GET['snumber'];
-            break;
-        case "*":
-            $result = $_GET['fnumber'] * $_GET['snumber'];
-            break;
-        case "/":
-            $result = $_GET['fnumber'] / $_GET['snumber'];
-            break;
+    if($_GET['snumber']==0){
+        echo "Nie dziel przez 0";
     }
-    echo $_GET['fnumber'].$_GET['operation'].$_GET['snumber']."=".$result;
+    else{
+        switch ($_GET['operation']){
+            case "+":
+                $result = $_GET['fnumber'] + $_GET['snumber'];
+                break;
+            case "-":
+                $result = $_GET['fnumber'] - $_GET['snumber'];
+                break;
+            case "*":
+                $result = $_GET['fnumber'] * $_GET['snumber'];
+                break;
+            case "/":
+                $result = $_GET['fnumber'] / $_GET['snumber'];
+                break;
+        }
+        echo $_GET['fnumber'].$_GET['operation'].$_GET['snumber']."=".$result;
+    }
+
+
 }

@@ -1,4 +1,5 @@
 <?php
+$tariff=array("Polska"=>30,"Hiszpania"=>50);
 
 echo '<form action="Zadanie3.3.php" method="get">
   <label for="dateStart">Date start:</label><br>
@@ -8,10 +9,13 @@ echo '<form action="Zadanie3.3.php" method="get">
   <input type="date" name="dateEnd" required><br>
   
   <label for="country">Kraj:</label><br>
-  <select name="country">
-  <option value="Polska">Polska</option>
-  <option value="Hiszpania">Hiszpania</option>
-</select><br>
+  <select name="country">';
+    foreach ($tariff as $x => $xv){
+        echo "<option value=\"" . $x."\">".$x."</option>";
+    }
+  //<option value="Polska">Polska</option>
+  //<option value="Hiszpania">Hiszpania</option>
+echo '</select><br>
   
   <label for="personQuantity">Osoby:</label><br>
   <select name="personQuantity">
@@ -24,10 +28,16 @@ echo '<form action="Zadanie3.3.php" method="get">
   <input type="submit" name="submit" value="Submit">
 </form>';
 
-/*$tariff = array (
-    array("Poland",30,18),
-);*/
-$tariff=["Polska"=>30,"Hiszpania"=>50];
+
+
+
+
+/*
+foreach ($tariff as $x => $xv){
+    echo $x . " price " . $xv;
+    echo "<br>";
+}
+*/
 
 if(isset($_GET['submit'])){
     $personQuantity=$_GET['personQuantity'];
@@ -36,7 +46,16 @@ if(isset($_GET['submit'])){
     $country=$_GET['country'];
     //echo $country;
     if($dateEnd>$dateStart){
-        
+        $temp1=strtotime($dateStart);
+        $temp2=strtotime($dateEnd);
+        $days=$temp2-$temp1;
+        $days=$days/86400;
+        $price = $tariff[$country]*$days*$personQuantity;
+
+        echo "Wyjazd: ". $dateStart . " do ". $dateEnd . " ".$country."<br>";
+        echo $days . " dni<br>";
+        echo $personQuantity . " osób<br>";
+        echo $price."zł<br>";
 
     }
     else{
