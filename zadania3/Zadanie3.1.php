@@ -1,38 +1,14 @@
 <?php
+function number($n)
+{
+    $random = array();
 
-echo '<form action="Zadanie3.1.php" method="get">
-  <label for="fnumber">First number:</label><br>
-  <input type="number" name="fnumber" step="any" required><br>
-  
-  <label for="snumber">Second number:</label><br>
-  <input type="number" name="snumber" step="any" required><br>
-  
-  <label for="operation">Operation:</label><br>
-  <select name="operation">
-  <option value="+">+</option>
-  <option value="-">-</option>
-  <option value="*">*</option>
-  <option value="/">/</option>
-</select><br><br>
-  
-  <input type="submit" name="submit" value="Submit">
-</form>';
-
-if(isset($_GET['submit'])){
-    $result=0;
-    switch ($_GET['operation']){
-        case "+":
-            $result = $_GET['fnumber'] + $_GET['snumber'];
-            break;
-        case "-":
-            $result = $_GET['fnumber'] - $_GET['snumber'];
-            break;
-        case "*":
-            $result = $_GET['fnumber'] * $_GET['snumber'];
-            break;
-        case "/":
-            $result = $_GET['fnumber'] / $_GET['snumber'];
-            break;
+    for ($i = 0; $i < 10; $i++) {
+        $random[$i] = rand(0,40);
     }
-    echo $_GET['fnumber'].$_GET['operation'].$_GET['snumber']."=".$result;
+    var_dump($random);
+    return $random[$n-1];
 }
+
+$n=2;
+echo "<br/>".number($n);
