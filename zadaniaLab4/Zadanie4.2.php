@@ -2,14 +2,26 @@
 
 $tablica["onas"] = ["nazwa"=>"O nas", "link"=>"onas", "tresc"=>"Witaj na stronie"];
 $tablica["kontakt"] = ["nazwa"=>"Kontakt", "link"=>"kontakt", "tresc"=>"Tu masz pisz"];
+$valid="onas";
+if(isset($_GET['link'])){
+    $as=$_GET['link'];
+    foreach ($tablica as $x){
+        if($x["link"]==$as){
+            $valid=$x["link"];
+        }
+    }
+    $as=$valid;
+}
+else{
+    $as="onas";
+}
 
-$as=$_GET['link'];
-    echo '<!DOCTYPE html>
+echo '<!DOCTYPE html>
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
     <title>'.$tablica[$as]["nazwa"];
-    echo'</title>
+echo'</title>
 </head>
 <body>';
 echo "<h1>".$tablica[$as]["tresc"]."</h1>";
