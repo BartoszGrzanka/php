@@ -31,6 +31,7 @@ echo'</title>
 <body>';
 echo "<h1>".$tablica[$as]["2"]."</h1>";
 echo '<ul>';
+    echo "<li> <a href='edit.php'>Edytuj plik</a></li>";
     foreach($tablica as $a)
     {
         echo "<li> <a href='index.php?1=".$a["1"]."'>".$a["0"]."</a></li>";
@@ -41,5 +42,5 @@ echo '</ul>
 
 //echo var_dump($tablica[0]["link"]);
 
-
+fclose($file);
 ?>
