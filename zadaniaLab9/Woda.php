@@ -1,6 +1,6 @@
 <?php
-
+require_once("pokemon.php");
 class Woda extends Pokemon{
-private $weak, $res;
+    protected $weak, $res;
 
 }
