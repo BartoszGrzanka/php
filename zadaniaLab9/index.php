@@ -1,8 +1,11 @@
 <?php
-include "pokemon.php";
-include "Woda.php";
-$poke1=new Pokemon('Squirtle','Woda',50);
-$poke2=new Pokemon('Squirtle','Woda',50);
-$poke1->attack($poke2);
-echo $poke2->getHpCurrent();
+include 'Woda.php';
+include 'Powietrze.php';
+include 'Walka.php';
 
+$poke1=new Woda('Squirtle','Woda',50);
+$poke2=new Powietrze('Mantine','Powietrze',70);
+
+
+$walka = new Walka($poke1,$poke2);
+$walka->go();
