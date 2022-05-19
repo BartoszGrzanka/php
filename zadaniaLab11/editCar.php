@@ -51,11 +51,30 @@ if(isset($_GET['id'])&&$_GET['id']>=$min && $_GET['id']<=intval($max)){
         echo '</tr>';
     }
     echo '</table>';
+
+    echo '<h2>EDYTUJ SWÓJ SAMOCHÓD</h2>';
+//    markę, model, cenę, rok i opis
+    echo '<form action="editCar.php" method="post">
+    <input type="text" name="marka" required>
+    <br>
+    <input type="text" name="model" required>
+    <br>
+    <input type="int" name="cena" step="any" required>
+    <br>
+    <input type="int" name="rok" required>
+    <br>
+    <input type="text" name="opis" required>
+    <br>
+    <input type="submit" name="submit" value="Submit">
+    </form>';
+
     echo '<button><a href="admin.php">Powrót</a></button>';
 }
 else{
     echo "ERROR";
-}}
+}}else{
+    echo "Idź sie zaloguj";
+}
 ?>
 
 </body>

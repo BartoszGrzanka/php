@@ -21,20 +21,6 @@ if (isset($_POST['submit'])) {
     }
 }
 
-if(isset($_GET['mainId'])){
-    $mainId=$_GET['mainId'];
-}
-else{
-    $mainId=1;
-}
-if($mainId>1){
-    $prev=$mainId-1;
-}
-else{
-    $prev = 1;
-}
-
-$next=$mainId+1;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -56,6 +42,9 @@ $next=$mainId+1;
 <?php
 
 if(!isset($_SESSION['user'])){
+
+
+
     echo '<form action="admin.php" method="post">
     <input type="text" name="login" required>
     <br>
@@ -65,6 +54,19 @@ if(!isset($_SESSION['user'])){
 </form>';
 }
 else{
+    if(isset($_GET['mainId'])){
+        $mainId=$_GET['mainId'];
+    }
+    else{
+        $mainId=1;
+    }
+    if($mainId>1){
+        $prev=$mainId-1;
+    }
+    else{
+        $prev = 1;
+    }
+    $next=$mainId+1;
     //var_dump(intval($_SESSION['user']));
     $sql2='SELECT * from samochody where uzytkownikId="'.intval($_SESSION['user']) .'"';
     $query2=$db->query($sql2);
@@ -89,7 +91,7 @@ else{
     else{
         $temp = intval($mainId)*5;
     }
-
+    $i=0;
 
     while(true) {
         //var_dump($row['id']);
@@ -97,11 +99,12 @@ else{
         echo "<td>".$result2[$temp]['id'] . "</td>";
         echo "<td>".$result2[$temp]['marka'] . "</td>";
         echo "<td>".$result2[$temp]['model'] . "</td>";
-        echo '<td><a href="EditCar.php?id=' . $result2[$temp]['id'] . '">Czytaj dalej</a> <br></td>';
+        echo '<td><a href="editCar.php?id=' . $result2[$temp]['id'] . '">Czytaj dalej</a> <br></td>';
         echo '</tr>';
-        $temp+=1;
+        $i=$i+1;
+        $temp=$temp+1;
         //var_dump($temp);
-        if((intval($mainId)*5)==$temp){
+        if($i==5){
             break;
         }
     }
