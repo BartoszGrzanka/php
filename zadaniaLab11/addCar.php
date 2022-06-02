@@ -2,10 +2,10 @@
 session_start();
 if(isset($_SESSION['user'])){
 
-//$dbuser = 's24953';
-//$dbpass = 'Bar.Grza';
-$dbpass='';
-$dbuser='root';
+$dbuser = 's24953';
+$dbpass = 'Bar.Grza';
+//$dbpass='';
+//$dbuser='root';
 $db = new PDO("mysql:host=localhost;dbname=s24953", $dbuser,$dbpass) or die ("Wywaliłem sie");
     foreach ($db->query('SELECT max(id) FROM samochody') as $row){
         $max=$row['max(id)']+1;

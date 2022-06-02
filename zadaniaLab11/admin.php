@@ -1,9 +1,9 @@
 <?php
 session_start();
-//$dbuser = 's24953';
-//$dbpass = 'Bar.Grza';
-$dbpass='';
-$dbuser='root';
+$dbuser = 's24953';
+$dbpass = 'Bar.Grza';
+//$dbpass='';
+//$dbuser='root';
 $db = new PDO("mysql:host=localhost;dbname=s24953", $dbuser,$dbpass) or die ("Wywaliłem sie");
 
 if (isset($_POST['submit'])) {

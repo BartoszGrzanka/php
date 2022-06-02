@@ -1,10 +1,10 @@
 <?php
 session_start();
 if(isset($_SESSION['user'])){
-//$dbuser = 's24953';
-//$dbpass = 'Bar.Grza';
-$dbpass='';
-$dbuser='root';
+$dbuser = 's24953';
+$dbpass = 'Bar.Grza';
+//$dbpass='';
+//$dbuser='root';
 $db = new PDO("mysql:host=localhost;dbname=s24953", $dbuser,$dbpass) or die ("Wywaliłem sie");
 $max=0;
 foreach ($db->query('SELECT max(id) FROM samochody') as $row){
@@ -67,16 +67,21 @@ if(isset($_POST['editCar'])){
 </head>
 <body>
 <?php
+
 if(isset($_GET['id'])&&$_GET['id']>=$min && $_GET['id']<=intval($max)||$_SESSION['carId']){
 
     if(isset($_GET['id'])){
-        $sql = "SELECT * FROM samochody where id=".$_GET['id'];
+        $sql = "SELECT * FROM samochody where id=".$_GET['id']." and uzytkownikId=".$_SESSION['user'];
         $_SESSION['carId']=$_GET['id'];
     }
     else{
-        $sql = "SELECT * FROM samochody where id=".$_SESSION['carId'];
+        $sql = "SELECT * FROM samochody where id=".$_SESSION['carId']." and uzytkownikId=".$_SESSION['user'];
     }
-
+    $query=$db->query($sql);
+    $query->execute();
+    $result= $query->fetch(PDO::FETCH_OBJ);
+    //var_dump($result);
+    if(!empty($result)){
     echo '<table>';
     echo '<tr>';
     echo "<td>id</td>";
@@ -121,6 +126,9 @@ if(isset($_GET['id'])&&$_GET['id']>=$min && $_GET['id']<=intval($max)||$_SESSION
 
     echo "<button><a href='admin.php'>Główna</a></button>";
     echo "<button><a href='logout.php'>WYLOGUJ</a></button>";
+}else{
+        echo "NOT YOUR CAR";
+    }
 }
 }else{
     echo "Idź sie zaloguj";
