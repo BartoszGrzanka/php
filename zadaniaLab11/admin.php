@@ -1,7 +1,9 @@
 <?php
 session_start();
-$dbuser = 's24953';
-$dbpass = 'Bar.Grza';
+//$dbuser = 's24953';
+//$dbpass = 'Bar.Grza';
+$dbpass='';
+$dbuser='root';
 $db = new PDO("mysql:host=localhost;dbname=s24953", $dbuser,$dbpass) or die ("Wywaliłem sie");
 
 if (isset($_POST['submit'])) {
@@ -111,7 +113,7 @@ else{
     echo '</table>';
     echo '<button><a href="admin.php?mainId='.$prev.'">Poprzednie</a></button>';
     echo '<button><a href="admin.php?mainId='.$next.'">Następne</a></button>';
-
+    echo "<button><a href='addCar.php'>Dodaj auto</a></button>";
     echo "<button><a href='logout.php'>WYLOGUJ</a></button>";
 }
 ?>

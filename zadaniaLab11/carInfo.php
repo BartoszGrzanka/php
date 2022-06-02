@@ -1,6 +1,8 @@
 <?php
-$dbuser = 's24953';
-$dbpass = 'Bar.Grza';
+//$dbuser = 's24953';
+//$dbpass = 'Bar.Grza';
+$dbpass='';
+$dbuser='root';
 $db = new PDO("mysql:host=localhost;dbname=s24953", $dbuser,$dbpass) or die ("Wywaliłem sie");
 $max=0;
 foreach ($db->query('SELECT max(id) FROM samochody') as $row){
