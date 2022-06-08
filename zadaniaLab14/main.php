@@ -1,10 +1,10 @@
 <?php
 session_start();
 if(isset($_SESSION['user'])){
-    $dbuser = 's24953';
-    $dbpass = 'Bar.Grza';
-//$dbpass='';
-//$dbuser='root';
+//    $dbuser = 's24953';
+//    $dbpass = 'Bar.Grza'
+$dbpass='';
+$dbuser='root';
     $db = new PDO("mysql:host=localhost;dbname=s24953", $dbuser,$dbpass) or die ("Wywaliłem sie");
     ?>
 
@@ -13,7 +13,7 @@ if(isset($_SESSION['user'])){
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Login</title>
+        <title>Main</title>
         <style>
             table{
                 border-collapse: collapse;
