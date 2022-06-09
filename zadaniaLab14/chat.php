@@ -1,23 +1,24 @@
 <?php
 session_start();
 if(isset($_SESSION['user'])){
-//    $dbuser = 's24953';
-//    $dbpass = 'Bar.Grza';
-$dbpass='';
-$dbuser='root';
+    $dbuser = 's24953';
+    $dbpass = 'Bar.Grza';
+//$dbpass='';
+//$dbuser='root';
     $db = new PDO("mysql:host=localhost;dbname=s24953", $dbuser,$dbpass) or die ("Wywaliłem sie");
     if(isset($_GET['id'])){
         $_SESSION['odbiorca']=intval($_GET['id']);
+        //var_dump($_SESSION['odbiorca']);
     }
     $sql="SELECT message.*,uzytkownicy.login from uzytkownicy 
         inner JOIN message on message.idNadawca=uzytkownicy.id 
         WHERE message.idOdbiorca=". $_SESSION['odbiorca'] . " or (message.idNadawca=".$_SESSION['odbiorca']." and message.idOdbiorca=".$_SESSION['user'].");";
     if (isset($_POST['submit'])){
 
-        $sqlAdd="INSERT INTO message(idNadawca, idOdbiorca, wiadomość) VALUES ("
+        $sqlAdd="INSERT INTO message(idNadawca, idOdbiorca, message) VALUES ("
             .$_SESSION['user']." , "
             .$_SESSION['odbiorca']." , \" "
-            . $_POST['wiadomosc']."\")";
+            . $_POST['message']."\")";
             $queryadd=$db->query($sqlAdd);
 
             unset($_POST);
@@ -48,21 +49,21 @@ $dbuser='root';
         if($row['idNadawca']==$_SESSION['user']){
             echo '<div style="text-align: left">';
             echo $row['login'].": <br>";
-            echo $row['wiadomość']."<br>";
+            echo $row['message']."<br>";
             echo '</div>';
         }
         elseif($row['idNadawca']==$_SESSION['odbiorca']){
             echo '<div style="text-align: right">';
             echo $row['login'].": <br>";
-            echo $row['wiadomość']."<br>";
+            echo $row['message']."<br>";
             echo '</div>';
         }
     }
     ?>
         <div style="margin: 0 auto;width: 50%">
         <form action="chat.php" method="post" style="margin-top: 20px;">
-            <label for="wiadomosc">Napisz wiadomość</label><br>
-            <input type="text" name="wiadomosc" id="wiadomosc" required>
+            <label for="message">Napisz wiadomość</label><br>
+            <input type="text" name="message" id="message" required>
             <input type="submit" name="submit">
         </form>
         </div>

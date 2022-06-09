@@ -1,9 +1,9 @@
 <?php
 session_start();
-//$dbuser = 's24953';
-//$dbpass = 'Bar.Grza';
-$dbpass='';
-$dbuser='root';
+$dbuser = 's24953';
+$dbpass = 'Bar.Grza';
+//$dbpass='';
+//$dbuser='root';
 $db = new PDO("mysql:host=localhost;dbname=s24953", $dbuser,$dbpass) or die ("Wywaliłem sie");
 $sql="SELECT * FROM pytania";
 $query=$db->query($sql);
@@ -34,12 +34,7 @@ $_SESSION['random']=$random;
             echo $result[$r][1]."<br>";
             foreach($resultAnswers as $answer){
                 //var_dump($answer);
-                if(intval($answer[2])==1){
-                    echo '<input type="radio" value=1 name="'.$r.'" required> '.$answer[1].'<br>';
-                }
-                else{
-                    echo '<input type="radio" value=0 name="'.$r.'"> '.$answer[1].'<br>';
-                }
+                    echo '<input type="radio" value="'.$answer[0].'" name="'.$r.'" required> '.$answer[1].'<br>';
             }
         }
         ?>
